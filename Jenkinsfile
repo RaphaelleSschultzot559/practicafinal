@@ -2,6 +2,12 @@ pipeline {
   agent any
   stages {
     stage('Build') {
+      agent {
+        node {
+          label 'slave-builder'
+        }
+
+      }
       steps {
         git 'https://github.com/RaphaelleSschultzot559/practicafinal.git'
         sh 'mvn -Dmaven.test.failure.ignore=true clean package'
